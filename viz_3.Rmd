@@ -115,3 +115,17 @@ weather_df |>
   geom_point() +
   geom_line()
 ```
+
+```{r}
+weather_df |>
+  group_by(name, month) |>
+  summarize(
+    mean_tmax = mean(tmax, na.rm = TRUE)
+  ) |>
+  pivot_wider(
+    names_from = name,
+    values_from = mean_tmax
+  ) |>
+  knitr::kable(digits = 2)
+```
+
